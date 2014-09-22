@@ -1,7 +1,8 @@
 fct-alpha      = 0.4
-fct-centresize = 48px
-fct-outersize  = 72px
-fct-outerwidth = 12px
+fct-renderzoom = 4
+fct-centresize = (fct-renderzoom * 20px)
+fct-outersize  = (fct-renderzoom * 32px)
+fct-outerwidth = (fct-renderzoom * 5px)
 fct-zoomzoom   = 1.2
 
 .floatyclickything
@@ -14,13 +15,33 @@ fct-zoomzoom   = 1.2
   margin-bottom: -(@height / 2)
   margin-left: -(@width / 2)
   border-radius: (@width)
+  /* to get smooth animations of pixel-size things on retina devices we have to
+     render everything double-size then scale it down. yay. */
+  transform: scale((1 / fct-renderzoom))
+
+.floatyclickything::after
+  content: ""
+  position: absolute
+  display: block
+  width: fct-centresize
+  height: fct-centresize
+  border-radius: (@width)
   background-color: rgba(255, 255, 255, fct-alpha)
   box-shadow: 0px 0px (fct-centresize / 6) (fct-centresize / 12) rgba(0,0,0,fct-alpha / 4)
-  /* to get smooth animations of pixel-size things on retina devices we have to
-   render everything double-size then scale it down. yay. */
-  transform: scale(0.5)
+
+.floatyclickything:hover::after
+  box-shadow: 0px 0px (fct-centresize / 3) (fct-centresize / 12) rgba(0,0,0,fct-alpha / 1)
+  background-color rgba(255,255,255,0)
+
+
+.floatyclickything:hover::before
+  opacity:0.25
+  width: fct-centresize
+  height: fct-centresize
+  margin: (- fct-outerwidth)
 
 .floatyclickything::before
+  pointer-events:none
   content: ""
   position: absolute
   display: block
@@ -28,21 +49,22 @@ fct-zoomzoom   = 1.2
   height: fct-outersize
   margin: ((fct-centresize - fct-outersize) / 2  - fct-outerwidth)
   border-radius: (@width)
-  border: fct-outerwidth solid transparent
+  border: fct-outerwidth solid rgba(0,0,0,fct-alpha/16)
   box-shadow: 0px 0px (fct-outerwidth) (fct-outerwidth/3) rgba(0,0,0,fct-alpha/2) inset, 0px 0px (fct-outerwidth) (fct-outerwidth/2) rgba(0,0,0,fct-alpha/3)
-  /*box-shadow: 0px 0px (fct-outerwidth) (fct-outerwidth/2) rgba(0,0,0,fct-alpha/3)*/
+  transition: opacity 0.3s ease, width 0.3s ease, height 0.3s ease, margin 0.3s ease
 
-  animation: clickyclick 1s infinite ease-in-out
+.floatyclickything:not(:hover)::before
+  animation: clickyclick 2s infinite ease
 
 @keyframes clickyclick
-  0%
+  0%, 70%
     width: fct-outersize
     height: fct-outersize
     margin: ((fct-centresize - fct-outersize) / 2  - fct-outerwidth)
-  50%
+  80%
     width: (fct-zoomzoom * fct-outersize)
     height: (fct-zoomzoom * fct-outersize)
     margin: ((fct-centresize - (fct-zoomzoom * fct-outersize)) / 2  - fct-outerwidth)
 
-
+/*to debounce hover events*/
 
