@@ -1,11 +1,48 @@
+fct-alpha      = 0.4
+fct-centresize = 48px
+fct-outersize  = 72px
+fct-outerwidth = 12px
+fct-zoomzoom   = 1.2
 
 .floatyclickything
   position: absolute
   z-index: 999999999
-  width: 40px
-  height: 40px
-  margin-left: -(@width / 2)
+  width: fct-centresize
+  height: fct-centresize
   margin-top: -(@height / 2)
-  border-radius: (@width / 2)
-  background-color: rgba(255, 255, 255, 0.2)
+  margin-right: -(@width / 2)
+  margin-bottom: -(@height / 2)
+  margin-left: -(@width / 2)
+  border-radius: (@width)
+  background-color: rgba(255, 255, 255, fct-alpha)
+  box-shadow: 0px 0px (fct-centresize / 6) (fct-centresize / 12) rgba(0,0,0,fct-alpha / 4)
+  /* to get smooth animations of pixel-size things on retina devices we have to
+   render everything double-size then scale it down. yay. */
+  transform: scale(0.5)
+
+.floatyclickything::before
+  content: ""
+  position: absolute
+  display: block
+  width: fct-outersize
+  height: fct-outersize
+  margin: ((fct-centresize - fct-outersize) / 2  - fct-outerwidth)
+  border-radius: (@width)
+  border: fct-outerwidth solid transparent
+  box-shadow: 0px 0px (fct-outerwidth) (fct-outerwidth/3) rgba(0,0,0,fct-alpha/2) inset, 0px 0px (fct-outerwidth) (fct-outerwidth/2) rgba(0,0,0,fct-alpha/3)
+  /*box-shadow: 0px 0px (fct-outerwidth) (fct-outerwidth/2) rgba(0,0,0,fct-alpha/3)*/
+
+  animation: clickyclick 1s infinite ease-in-out
+
+@keyframes clickyclick
+  0%
+    width: fct-outersize
+    height: fct-outersize
+    margin: ((fct-centresize - fct-outersize) / 2  - fct-outerwidth)
+  50%
+    width: (fct-zoomzoom * fct-outersize)
+    height: (fct-zoomzoom * fct-outersize)
+    margin: ((fct-centresize - (fct-zoomzoom * fct-outersize)) / 2  - fct-outerwidth)
+
+
 
