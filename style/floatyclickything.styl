@@ -5,9 +5,18 @@ fct-outersize  = (fct-renderzoom * 32px)
 fct-outerwidth = (fct-renderzoom * 5px)
 fct-zoomzoom   = 1.2
 
-.floatyclickything
+/* the scaling confuses jquery.position in firefox, so can't do this all with one div :( */
+.floatyclickycontainer
   position: absolute
-  z-index: 999999999
+  z-index: 1000000
+  width:0
+  height:0
+  overflow:visible
+
+.floatyclickything
+  box-sizing: border-box
+  cursor: pointer
+  z-index: 1000000
   width: fct-centresize
   height: fct-centresize
   margin-top: -(@height / 2)
@@ -30,11 +39,13 @@ fct-zoomzoom   = 1.2
   box-shadow: 0px 0px (fct-centresize / 6) (fct-centresize / 12) rgba(0,0,0,fct-alpha / 4)
 
 .floatyclickything:hover::after
+.floatyclickything.active::after
   box-shadow: 0px 0px (fct-centresize / 3) (fct-centresize / 12) rgba(0,0,0,fct-alpha / 1)
   background-color rgba(255,255,255,0)
 
 
 .floatyclickything:hover::before
+.floatyclickything.active::before
   opacity:0.25
   width: fct-centresize
   height: fct-centresize
@@ -53,18 +64,15 @@ fct-zoomzoom   = 1.2
   box-shadow: 0px 0px (fct-outerwidth) (fct-outerwidth/3) rgba(0,0,0,fct-alpha/2) inset, 0px 0px (fct-outerwidth) (fct-outerwidth/2) rgba(0,0,0,fct-alpha/3)
   transition: opacity 0.3s ease, width 0.3s ease, height 0.3s ease, margin 0.3s ease
 
-.floatyclickything:not(:hover)::before
-  animation: clickyclick 2s infinite ease
+.floatyclickything:not(:hover):not(.active)::before
+  animation: clickyclick 6s infinite ease
 
 @keyframes clickyclick
-  0%, 70%
+  0%, 95%
     width: fct-outersize
     height: fct-outersize
     margin: ((fct-centresize - fct-outersize) / 2  - fct-outerwidth)
-  80%
+  97%
     width: (fct-zoomzoom * fct-outersize)
     height: (fct-zoomzoom * fct-outersize)
     margin: ((fct-centresize - (fct-zoomzoom * fct-outersize)) / 2  - fct-outerwidth)
-
-/*to debounce hover events*/
-
