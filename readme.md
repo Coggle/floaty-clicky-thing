@@ -5,7 +5,7 @@ CSS3-animated floaty-clicky-things (aka coachpoints) useful to add contextual he
 ## Show me!
 Of course, here's a floaty clicky thing in action on [Coggle](http://coggle.it):
 
-![Eris](https://github.com/Coggle/floaty-clicky-thing/raw/master/image/floatyclicky.gif)
+![Floaty Clicky Thing](https://raw.githubusercontent.com/Coggle/floaty-clicky-thing/master/images/floatyclicky.gif)
 
 ## License?
 ISC
