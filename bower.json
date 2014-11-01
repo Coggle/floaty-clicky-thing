@@ -1,14 +1,39 @@
 {
-    "name": "floaty-clicky-thing",
-    "description": "Floaty Clicky Things (aka coachpoints) to add contextual help to an application."
-    "ignore": ["images", "readme.md", "lib", "style", ".gitignore", "bower.json"],
-    "license":"ISC",
-    "homepage": "https://github.com/Coggle/floaty-clicky-thing",
-    "repository": {
-      "type": "git",
-      "url": "git@github.com:Coggle/floaty-clicky-thing.git"
-    },
-    "dependencies":{
-        "jquery-ui": ">=1.11"
-    }
+  "name": "floaty-clicky-thing",
+  "description": "Floaty Clicky Things (aka coachpoints) to add contextual help to an application.",
+  "ignore": [
+    "images",
+    "readme.md",
+    "lib",
+    "style",
+    ".gitignore",
+    "bower.json",
+    "Gruntfile.js",
+    "package.json",
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/Coggle/floaty-clicky-thing",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Coggle/floaty-clicky-thing.git"
+  },
+  "dependencies": {
+    "jquery-ui": ">=1.11"
+  },
+  "version": "0.0.0",
+  "authors": [
+    "James Crosby <james@coggle.it>"
+  ],
+  "main": "dist/floaty-clicky-thing.js",
+  "moduleType": [
+    "amd"
+  ],
+  "keywords": [
+    "coachpoints"
+  ]
 }
