@@ -1,0 +1,14 @@
+{
+    "name": "floaty-clicky-thing",
+    "description": "Floaty Clicky Things (aka coachpoints) to add contextual help to an application."
+    "ignore": ["images", "readme.md", "lib", "style", ".gitignore", "bower.json"],
+    "license":"ISC",
+    "homepage": "https://github.com/Coggle/floaty-clicky-thing",
+    "repository": {
+      "type": "git",
+      "url": "git@github.com:Coggle/floaty-clicky-thing.git"
+    },
+    "dependencies":{
+        "jquery-ui": ">=1.11"
+    }
+}
