@@ -1,6 +1,6 @@
 {
   "name": "floaty-clicky-thing",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Floaty Clicky Things (aka coachpoints) to add contextual help to an application.",
   "repository": {
     "type": "git",
